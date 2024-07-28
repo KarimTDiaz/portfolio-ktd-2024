@@ -1,137 +1,181 @@
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import { useRef } from 'react';
 import styled from 'styled-components';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import { Icon } from '../../components/icon/Icon';
 import { ScrollUi } from '../../components/scroll-ui/ScrollUi';
 import { ICONS } from '../../constants/images';
 import { ThemeProvider } from '../../providers/ThemeProvider';
+import {
+  useHeroDataTrigger,
+  useModelTrigger,
+  useTextReveal
+} from './animations';
+
 gsap.registerPlugin(ScrollTrigger);
 
 export const Home = () => {
-  const titleRef = useRef<HTMLDivElement>();
-  useGSAP(() => {
-    const tl = gsap.timeline();
-    let parentHeight;
+  useTextReveal();
+  useHeroDataTrigger();
+  useModelTrigger();
 
-    document.querySelectorAll('.singleLine .textReveal').forEach(el => {
-      parentHeight = (el.parentNode as HTMLElement).clientHeight;
-    });
+  useGSAP(() => {
+    gsap.fromTo(
+      '.aboutSpan',
+      { x: 0, opacity: 0 },
+      {
+        opacity: 1,
+        scrollTrigger: {
+          trigger: '.aboutTrigger',
+          start: 'top 50vh',
+          end: 'bottom 100vh',
+          toggleActions: 'play none none reset',
+          scrub: true,
+          pin: true
+        }
+      }
+    );
+  }, {});
 
-    tl.from('.singleLine .textReveal', {
-      y: parentHeight,
-      ease: 'power4.out',
-      duration: 1,
-      stagger: 0.2,
-      delay: 1
+  useGSAP(() => {
+    ScrollTrigger.create({
+      trigger: '.trigger-2',
+      start: 'top top',
+      once: true,
+      onEnter: () => {
+        gsap.to('.projectsTrigger', {
+          opacity: 1,
+          y: 50,
+          scale: 1.2,
+          duration: 0.3
+        });
+      }
     });
-  }, {});
-  useGSAP(() => {
-    gsap.fromTo(
-      '.heroTitle',
-      { y: 0, scale: 1 },
-      {
-        y: 0,
-        scale: 1.1,
-        opacity: 0,
-        scrollTrigger: {
-          trigger: '.trigger',
-          start: 'top top',
-          end: 'bottom center',
-          toggleActions: 'play none none reset',
-          scrub: true
-        }
+    gsap.to('.p ', {
+      xPercent: -50,
+      scrollTrigger: {
+        trigger: '.logoTrigger',
+        start: 'top center',
+        scrub: 0.5
       }
-    );
-  }, {});
-  useGSAP(() => {
-    gsap.fromTo(
-      '.heroData',
-      { y: 0 },
-      {
-        y: 200,
-        opacity: 0,
-        scrollTrigger: {
-          trigger: '.trigger',
-          start: 'top top',
-          end: 'bottom center',
-          toggleActions: 'play none none reset',
-          scrub: true
-        }
-      }
-    );
-  }, {});
-  useGSAP(() => {
-    gsap.fromTo(
-      '.heroDate',
-      { x: 0 },
-      {
-        x: -40,
-        opacity: 0,
-        scrollTrigger: {
-          trigger: '.trigger',
-          start: 'top top',
-          end: 'bottom center',
-          toggleActions: 'play none none reset',
-          scrub: true
-        }
-      }
-    );
+    });
   }, {});
 
   return (
     <HomeContainer>
-      <HeroContainer className="trigger">
-        <Line className="singleLine" height={'12vh'} mb={'5rem'}>
-          <TextReveal className="textReveal ">
-            <HeroTitle className="heroTitle">TILOUNI</HeroTitle>
-          </TextReveal>
-        </Line>
-        <Line className="singleLine" height={'5vh'} mb={'2rem'}>
-          <TextReveal className="textReveal">
-            <DateContainer className="heroDate">
-              <DateText>1994</DateText>
-              <Icon src={ICONS.square} size={['10px']}></Icon>
-              <DateText>13/09</DateText>
-            </DateContainer>
-          </TextReveal>
-        </Line>
-        <HeroDataContainer className="heroData">
-          <Line className="singleLine" height={'5vh'} mb={''}>
-            <TextReveal className="textReveal">
-              <HeroDataTitle>WEB DEVELOPER</HeroDataTitle>
+      <div className="homeTrigger">
+        <HeroContainer className="trigger">
+          <Line className="singleLine" height={'12vh'} mb={'5rem'}>
+            <TextReveal className="textReveal ">
+              <HeroTitle className="heroTitle">TILOUNI</HeroTitle>
             </TextReveal>
           </Line>
-          <Line className="singleLine" height={'15vh'} mb={''}>
+          <Line className="singleLine" height={'5vh'} mb={'2rem'}>
             <TextReveal className="textReveal">
-              <HeroDataText>
-                Hey, I`m Karim, web developer focused in mern stack, but
-                learning and adapting constantly.
-              </HeroDataText>
+              <DateContainer className="heroDate">
+                <DateText>1994</DateText>
+                <Icon src={ICONS.square} size={['10px']}></Icon>
+                <DateText>13/09</DateText>
+              </DateContainer>
             </TextReveal>
           </Line>
-        </HeroDataContainer>
-      </HeroContainer>
-      <ScrollUi />
-      <ModelContainer>
-        <StyledModelViewer
-          src="/assets/models/arm2.glb"
-          ar
-          shadow-intensity="1"
-          camera-controls
-          touch-action="pan-y"
-          interaction-prompt="none"
-          /* auto-rotate */
-          /*   camera-orbit="-69.8deg 94deg 115.4m" */
-          field-of-view="30deg"
-          min-camera-orbit="auto 94deg auto"
-          max-camera-orbit="auto 94deg auto"
-          camera-orbit="calc(-1.5rad + env(window-scroll-y) * 4rad) calc(0deg + env(window-scroll-y) * 180deg)"
-        />
-        <ModelGradient />
-      </ModelContainer>
-      <div style={{ height: '1500px' }}></div>
+          <HeroDataContainer className="heroData">
+            <Line className="singleLine" height={'5vh'} mb={''}>
+              <TextReveal className="textReveal">
+                <HeroDataTitle>WEB DEVELOPER</HeroDataTitle>
+              </TextReveal>
+            </Line>
+            <Line className="singleLine" height={'15vh'} mb={''}>
+              <TextReveal className="textReveal">
+                <HeroDataText>
+                  Hey, I`m Karim, web developer focused in mern stack, but
+                  learning and adapting constantly.
+                </HeroDataText>
+              </TextReveal>
+            </Line>
+          </HeroDataContainer>
+          <ScrollUi />
+        </HeroContainer>
+        {/* CONTENEDOR ABOUT */}
+        <AboutContainer className="aboutTrigger">
+          <AboutText className="aboutSpan">
+            I'm a web developer specializing in the
+          </AboutText>
+          <AboutTextSpan> MERN </AboutTextSpan>
+          <AboutText className="aboutSpan">
+            stack (MongoDB, Express, React, Node.js). I love building
+            applications that bring together backend and frontend, and I'm
+          </AboutText>
+          <AboutTextSpan> always </AboutTextSpan>
+          <AboutText className="aboutSpan">
+            eager to learn new technologies. While I don't have formal design
+            training, I have a good eye for creating appealing and functional{' '}
+          </AboutText>
+          <AboutTextSpan>interfaces.</AboutTextSpan>
+          <div style={{ paddingTop: '2rem' }}>
+            <AboutText className="aboutSpan">Besides my passion for</AboutText>
+            <AboutTextSpan> technology, </AboutTextSpan>
+            <AboutText className="aboutSpan">
+              I'm also a music producer and DJ, which helps me stay proactive
+              and
+            </AboutText>
+            <AboutTextSpan> creative in my work. </AboutTextSpan>
+            <AboutText className="aboutSpan">
+              Check out my portfolio to see some of my projects. I hope you
+              enjoy
+            </AboutText>
+            <AboutTextSpan> exploring them! </AboutTextSpan>
+          </div>
+        </AboutContainer>
+        <ModelContainer className="model">
+          <StyledModelViewer
+            src="/assets/models/arm2.glb"
+            ar
+            shadow-intensity="1"
+            camera-controls
+            touch-action="pan-y"
+            interaction-prompt="none"
+            /* auto-rotate */
+            /*   camera-orbit="-69.8deg 94deg 115.4m" */
+            field-of-view="30deg"
+            min-camera-orbit="auto 94deg auto"
+            max-camera-orbit="auto 94deg auto"
+            camera-orbit="calc(-1.5rad + env(window-scroll-y) * 4rad) calc(0deg + env(window-scroll-y) * 180deg)"
+          />
+          <ModelGradient />
+        </ModelContainer>
+      </div>
+      <div
+        className="logoTrigger"
+        style={{
+          overflow: 'hidden',
+          color: 'white',
+          paddingTop: '10rem',
+          /* fontSize: '5rem', */
+          display: 'flex'
+        }}
+      >
+        <div className="p" style={{ display: 'flex', gap: '1rem' }}>
+          {Array.from({ length: 10 }).map((item, index) => (
+            <Icon
+              key={index}
+              src={{ src: './assets/logos/logo.svg', alt: 'logo' }}
+              size={['500px']}
+            />
+          ))}
+        </div>
+      </div>
+      <div
+        className="trigger-2"
+        style={{ paddingTop: '1rem', height: '1000px', position: 'relative' }}
+      >
+        <HomeProjectsButton className="projectsTrigger">
+          SEE MY PROJECTS
+        </HomeProjectsButton>
+      </div>
     </HomeContainer>
   );
 };
@@ -142,6 +186,7 @@ const HomeContainer = styled.div`
 
 const HeroContainer = styled.div`
   padding-top: 10rem;
+  min-height: 100vh;
 `;
 
 const HeroTitle = styled.h1`
@@ -175,6 +220,23 @@ const HeroDataText = styled.p`
   color: ${ThemeProvider.colors.core.secondary};
   font-size: 20px;
   font-family: ${ThemeProvider.fonts.secondary};
+  line-height: 2rem;
+`;
+const AboutContainer = styled.div`
+  padding-top: 5rem;
+  /* height: 150vh; */
+`;
+const AboutText = styled.span`
+  opacity: 0.3;
+  color: ${ThemeProvider.colors.core.secondary};
+  font-size: 20px;
+  font-family: ${ThemeProvider.fonts.secondary};
+  line-height: 2rem;
+`;
+const AboutTextSpan = styled.span`
+  color: ${ThemeProvider.colors.core.secondary};
+  font-size: 20px;
+  font-family: ${ThemeProvider.fonts.tertiary};
   line-height: 2rem;
 `;
 
@@ -224,4 +286,21 @@ const ModelGradient = styled.div`
     transparent 60%,
     ${ThemeProvider.colors.core.primary} 90%
   );
+`;
+
+const HomeProjectsButton = styled.div`
+  position: absolute;
+  top: 250px;
+  left: 20vw;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  color: ${ThemeProvider.colors.core.secondary};
+  width: 150px;
+  height: 150px;
+  border: solid 2px white;
+  border-radius: 50%;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-150) scale(0);
 `;

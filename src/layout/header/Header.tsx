@@ -10,5 +10,6 @@ export const Header = () => {
 };
 
 const StyledHeader = styled.header`
+  position: fixed;
   padding: 1rem;
 `;

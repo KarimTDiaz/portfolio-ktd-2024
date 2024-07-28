@@ -1,12 +1,15 @@
+import React from 'react';
 import styled from 'styled-components';
 
 type IconProps = {
   size: string[];
   src: { src: string; alt: string };
 };
-export const Icon = ({ src, size }: IconProps) => {
-  return <StyledIcon {...src} size={size} />;
-};
+export const Icon = React.forwardRef<HTMLImageElement, IconProps>(
+  ({ src, size }, ref) => {
+    return <StyledIcon ref={ref} {...src} size={size} />;
+  }
+);
 
 type StyledIconProps = {
   size: string[];
