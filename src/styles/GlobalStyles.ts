@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { ThemeProvider } from '../providers/ThemeProvider';
 
 export const GlobalStyles = createGlobalStyle`
 
@@ -41,7 +42,8 @@ body {
 	margin: 0;
     margin-left: auto;
     margin-right: auto;
-	font-family: 'grotesk-light', sans-serif;
+	font-family: 'teka-regular', sans-serif;
+	background-color: ${ThemeProvider.colors.core.primary};
 }
 
 `;
