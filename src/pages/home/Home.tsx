@@ -159,13 +159,32 @@ export const Home = () => {
         }}
       >
         <div className="p" style={{ display: 'flex', gap: '1rem' }}>
-          {Array.from({ length: 10 }).map((item, index) => (
-            <Icon
-              key={index}
-              src={{ src: './assets/logos/logo.svg', alt: 'logo' }}
-              size={['500px']}
-            />
-          ))}
+          <Icon
+            src={{ src: './assets/logos/logo.svg', alt: 'logo' }}
+            size={['500px']}
+          />
+          <Icon
+            src={{ src: './assets/logos/logo.svg', alt: 'logo' }}
+            size={['500px']}
+          />
+          <Icon
+            src={{ src: './assets/logos/logo.svg', alt: 'logo' }}
+            size={['500px']}
+          />
+          <Icon
+            src={{ src: './assets/logos/logo.svg', alt: 'logo' }}
+            size={['500px']}
+          />
+          {/*    {Array.from({ length: 10 }).map((item, index) => (
+            <>
+              <Icon
+                item
+                key={index}
+                src={{ src: './assets/logos/logo.svg', alt: 'logo' }}
+                size={['500px']}
+              />
+            </>
+          ))} */}
         </div>
       </div>
       <div
