@@ -268,20 +268,6 @@ const ModelContainer = styled.div`
   z-index: -2;
 `;
 
-interface StyledModelViewerProps {
-  src: string; // Propiedad src de tipo string
-  ar?: boolean; // Propiedad opcional de tipo boolean
-  shadowIntensity?: number; // Se utiliza camelCase en lugar de kebab-case
-  cameraControls?: boolean;
-  touchAction?: string;
-  interactionPrompt?: string;
-  autoRotate?: boolean;
-  cameraOrbit?: string;
-  fieldOfView?: string;
-  minCameraOrbit?: string;
-  maxCameraOrbit?: string;
-}
-
 const StyledModelViewer = styled<any>('model-viewer')`
   width: 100vw;
   height: 100vh;
