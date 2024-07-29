@@ -18,6 +18,7 @@ export const useTextReveal = () => {
     });
   }, {});
 };
+
 export const useHeroDataTrigger = () => {
   useGSAP(() => {
     gsap.fromTo(

@@ -5,8 +5,10 @@ import styled from 'styled-components';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { Button } from '../../components/button/Button';
 import { Icon } from '../../components/icon/Icon';
 import { ScrollUi } from '../../components/scroll-ui/ScrollUi';
+import { BUTTONS } from '../../constants/buttons';
 import { ICONS } from '../../constants/images';
 import { ThemeProvider } from '../../providers/ThemeProvider';
 import {
@@ -38,6 +40,21 @@ export const Home = () => {
         }
       }
     );
+  }, {});
+
+  useGSAP(() => {
+    gsap.from('.singleLineTitle .titleReveal', {
+      y: '100px',
+      ease: 'power4.out',
+      duration: 1.5,
+      stagger: 0.2,
+      delay: 1,
+      scrollTrigger: {
+        trigger: '.aboutTrigger',
+        start: 'top 90%',
+        toggleActions: 'play none none none'
+      }
+    });
   }, {});
 
   useGSAP(() => {
@@ -101,6 +118,11 @@ export const Home = () => {
         </HeroContainer>
         {/* CONTENEDOR ABOUT */}
         <AboutContainer className="aboutTrigger">
+          <Line className="singleLineTitle" height={'10vh'} mb={''}>
+            <TextReveal className="titleReveal">
+              <SectionTitle>SOME ABOUT</SectionTitle>
+            </TextReveal>
+          </Line>
           <AboutText className="aboutSpan">
             I'm a web developer specializing in the
           </AboutText>
@@ -129,6 +151,9 @@ export const Home = () => {
             </AboutText>
             <AboutTextSpan> exploring them! </AboutTextSpan>
           </div>
+          <Button type={BUTTONS.blob}>
+            <GreenText>MORE ABOUT ME</GreenText>
+          </Button>
         </AboutContainer>
         <ModelContainer className="model">
           <StyledModelViewer
@@ -210,14 +235,14 @@ const HeroContainer = styled.div`
 
 const HeroTitle = styled.h1`
   color: ${ThemeProvider.colors.core.secondary};
-  font-size: 5rem;
+  font-size: 20vw /* 5rem */;
   font-weight: 400;
   font-family: ${ThemeProvider.fonts.primaryMedium};
 `;
 
 const DateText = styled.span`
   color: ${ThemeProvider.colors.core.secondary};
-  font-size: 1.25rem;
+  font-size: 4vw /*  1.25rem */;
   font-family: ${ThemeProvider.fonts.tertiary};
 `;
 
@@ -245,6 +270,12 @@ const AboutContainer = styled.div`
   padding-top: 5rem;
   /* height: 150vh; */
 `;
+const SectionTitle = styled.h2`
+  color: ${ThemeProvider.colors.core.secondary};
+  font-size: 30px;
+  font-weight: 300;
+  font-family: ${ThemeProvider.fonts.primaryRegular};
+`;
 const AboutText = styled.span`
   opacity: 0.3;
   color: ${ThemeProvider.colors.core.secondary};
@@ -258,7 +289,10 @@ const AboutTextSpan = styled.span`
   font-family: ${ThemeProvider.fonts.tertiary};
   line-height: 2rem;
 `;
-
+const GreenText = styled(AboutTextSpan)`
+  opacity: 1;
+  color: ${ThemeProvider.colors.misc.primary};
+`;
 type LineProps = {
   height: string;
   mb: string;
