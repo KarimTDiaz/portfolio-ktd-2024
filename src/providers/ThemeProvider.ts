@@ -3,6 +3,9 @@ export const ThemeProvider = {
     core: {
       primary: '#17191A',
       secondary: '#F2F2F2'
+    },
+    misc: {
+      primary: '#BDFF00'
     }
   },
   fonts: {
