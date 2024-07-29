@@ -4,11 +4,11 @@ import { ThemeProvider } from '../../providers/ThemeProvider';
 type ButtonProps = {
   type: string;
   children: React.ReactNode;
-  size?: string[];
+  /*  size?: string[]; */
   action?: () => void;
 };
 
-export const Button = ({ type, children, size, action }: ButtonProps) => {
+export const Button = ({ type, children, action }: ButtonProps) => {
   switch (type) {
     case BUTTONS.primary:
       break;
@@ -35,6 +35,7 @@ const StyledBlobButton = styled.div`
   background-position: center;
   background-size: contain;
   border-radius: 50%;
+
   /* border: 1px solid wheat; */
   transition: all 0.5s;
   &:hover {
