@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { BUTTONS } from '../../constants/buttons';
-import { ThemeProvider } from '../../providers/ThemeProvider';
 type ButtonProps = {
   type: string;
   children: React.ReactNode;
@@ -14,9 +13,16 @@ export const Button = ({ type, children, action }: ButtonProps) => {
       break;
     case BUTTONS.blob:
       return (
-        <StyledBlobButton onClick={action} className="blob-element">
-          {children}
-        </StyledBlobButton>
+        <div>
+          <StyledBlobButton onClick={action} className="blob-element">
+            {children}
+          </StyledBlobButton>
+          <img
+            style={{ width: '1000px' }}
+            src="assets/icons/blob-stroke-2.svg"
+            alt=""
+          />
+        </div>
       );
     default:
       break;
@@ -27,20 +33,15 @@ const StyledBlobButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   width: 250px;
   height: 250px;
   padding: 5rem;
   text-align: center;
   background-image: url('/assets/icons/blob-stroke.svg');
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   border-radius: 50%;
-
   /* border: 1px solid wheat; */
   transition: all 0.5s;
-  &:hover {
-    background-color: ${ThemeProvider.colors.misc.primary};
-    width: 150px;
-    height: 150px;
-  }
 `;
