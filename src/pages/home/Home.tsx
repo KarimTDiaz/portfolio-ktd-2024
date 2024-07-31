@@ -136,8 +136,6 @@ const HomeMarqueeContainer = styled.div`
   transform: rotate(-10deg);
 `;
 
-const HomeProjectsSlider = styled.div``;
-
 const ProjectsCarrouselContainer = styled.div`
   display: flex;
   flex-direction: column;
