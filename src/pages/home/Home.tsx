@@ -84,7 +84,7 @@ export const Home = () => {
           {Array.from({ length: 10 }).map((_, index) => (
             <Icon
               key={index}
-              src={{ src: './assets/logos/logo.svg', alt: 'logo' }}
+              src={{ src: '/assets/logos/logo.svg', alt: 'logo' }}
               size={['500px']}
             />
           ))}
@@ -139,7 +139,7 @@ const HomeMarqueeContainer = styled.div`
 const ProjectsCarrouselContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 10rem 0;
+  padding: 5rem 0;
   height: 100vh;
   overflow-x: hidden;
 `;
@@ -151,7 +151,7 @@ const ProjectsCarrousel = styled.div`
 `;
 
 const ProjectCard = styled.div`
-  height: 450px;
+  height: 50vh;
   width: 92vw;
 `;
 
