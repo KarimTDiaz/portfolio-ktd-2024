@@ -17,11 +17,6 @@ export const Button = ({ type, children, action }: ButtonProps) => {
           <StyledBlobButton onClick={action} className="blob-element">
             {children}
           </StyledBlobButton>
-          <img
-            style={{ width: '1000px' }}
-            src="assets/icons/blob-stroke-2.svg"
-            alt=""
-          />
         </div>
       );
     default:
