@@ -11,8 +11,8 @@ export const HomeAbout = () => {
       <TextRevealed
         lineClassName="lineTitleAboutHome"
         revealClassName="titleRevealAboutHome"
-        height={'10vh'}
-        mb={'0'}
+        height={['10vh']}
+        mb={['0']}
       >
         <SectionTitle>SOME ABOUT</SectionTitle>
       </TextRevealed>
@@ -54,19 +54,30 @@ export const HomeAbout = () => {
 const HomeAboutContainer = styled.div`
   padding-top: 5rem;
   /* height: 150vh; */
+  @media screen and (min-width: 640px) {
+    padding-top: 7rem;
+  }
 `;
 const HomeAboutText = styled.span`
   opacity: 0.3;
   color: ${ThemeProvider.colors.core.secondary};
-  font-size: 20px;
+  font-size: 1.25rem;
   font-family: ${ThemeProvider.fonts.secondary};
   line-height: 2rem;
+  @media screen and (min-width: 640px) {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
 `;
 const HomeAboutTextSpan = styled.span`
   color: ${ThemeProvider.colors.core.secondary};
-  font-size: 20px;
+  font-size: 1.25rem;
   font-family: ${ThemeProvider.fonts.tertiary};
   line-height: 2rem;
+  @media screen and (min-width: 640px) {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
 `;
 
 const HomeAboutTextContainer = styled.div`

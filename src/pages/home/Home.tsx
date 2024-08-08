@@ -85,7 +85,8 @@ export const Home = () => {
             <Icon
               key={index}
               src={{ src: '/assets/logos/logo.svg', alt: 'logo' }}
-              size={['500px']}
+              size={['500px', '800px']}
+              height={['auto','80px']}
             />
           ))}
         </Marquee>
@@ -98,8 +99,8 @@ export const Home = () => {
           <TextRevealed
             lineClassName="lineTitleProjectsHome"
             revealClassName="titleRevealProjectsHome"
-            height={'10vh'}
-            mb={'0'}
+            height={['10vh']}
+            mb={['0']}
           >
             <SectionTitle>SELECTED WORKS</SectionTitle>
           </TextRevealed>

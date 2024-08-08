@@ -3,9 +3,12 @@ import { ThemeProvider } from '../../providers/ThemeProvider';
 
 export const SectionTitle = styled.h2`
   color: ${ThemeProvider.colors.core.secondary};
-  font-size: 30px;
+  font-size: 1.875rem;
   font-weight: 300;
   font-family: ${ThemeProvider.fonts.primaryRegular};
+  @media screen and (min-width: 640px) {
+    font-size: 3rem;
+  }
 `;
 
 export const GreenText = styled.span`
