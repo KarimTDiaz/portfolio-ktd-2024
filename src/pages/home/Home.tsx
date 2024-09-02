@@ -10,6 +10,7 @@ import { Marquee } from '../../components/marquee/Marquee';
 import { Model } from '../../components/Model';
 import { ScrollUi } from '../../components/scroll-ui/ScrollUi';
 import {
+  useButtonTrigger,
   useHeroDataTrigger,
   useMarqueeTrigger,
   useModelTrigger,
@@ -26,30 +27,17 @@ import { TextRevealed } from '../../components/text-revealed/TextRevealed';
 import { WORKS } from '../../constants/works';
 import { ThemeProvider } from '../../providers/ThemeProvider';
 import { SectionTitle } from './styles';
+import { HomeProjects } from './home-sections/HomeProjects';
 gsap.registerPlugin(ScrollTrigger);
 
 export const Home = () => {
   useTextReveal();
   useHeroDataTrigger();
   useTransparentSpan();
+  useButtonTrigger();
   useModelTrigger();
   useMarqueeTrigger();
 
-  useGSAP(() => {
-    /* ScrollTrigger.create({
-      trigger: '.trigger-2',
-      start: 'top top',
-      once: true,
-      onEnter: () => {
-        gsap.to('.projectsTrigger', {
-          opacity: 1,
-          y: 50,
-          scale: 1.2,
-          duration: 0.3
-        });
-      }
-    }); */
-  }, {});
   useGSAP(() => {
     let projectCardsHome = gsap.utils.toArray('.projectCardHome');
     gsap.to(projectCardsHome, {
@@ -73,6 +61,7 @@ export const Home = () => {
       }
     });
   }, {});
+
   return (
     <HomeContainer>
       <div className="homeContainerTop">
@@ -86,39 +75,14 @@ export const Home = () => {
               key={index}
               src={{ src: '/assets/logos/logo.svg', alt: 'logo' }}
               size={['500px', '800px']}
-              height={['auto','80px']}
+              height={['auto', '80px']}
             />
           ))}
         </Marquee>
       </HomeMarqueeContainer>
-      <div
-        className="trigger-2"
-        style={{ paddingTop: '5rem', position: 'relative' }}
-      >
-        <ProjectsCarrouselContainer className="projectsCarrouselContainer">
-          <TextRevealed
-            lineClassName="lineTitleProjectsHome"
-            revealClassName="titleRevealProjectsHome"
-            height={['10vh']}
-            mb={['0']}
-          >
-            <SectionTitle>SELECTED WORKS</SectionTitle>
-          </TextRevealed>
-          <ProjectsCarrousel>
-            {WORKS.map(item => (
-              <ProjectCard key={item.name} className="projectCardHome">
-                <ProjectCardHeader>
-                  <ProjectCardTitle>{item.name}</ProjectCardTitle>
-                  <ProjectCardNumber>{item.number}</ProjectCardNumber>
-                </ProjectCardHeader>
-                <ProjectCardImage src={item.preview} alt="ProjectImage" />
-                <ProjectCardFooter>{item.type}</ProjectCardFooter>
-              </ProjectCard>
-            ))}
-          </ProjectsCarrousel>
-        </ProjectsCarrouselContainer>
-        <HomeHero />
-      </div>
+      <HomeContainerBottom className="trigger-2">
+        <HomeProjects />
+      </HomeContainerBottom>
       <Model className="modelHome" />
       <ScrollUi />
     </HomeContainer>
@@ -137,57 +101,7 @@ const HomeMarqueeContainer = styled.div`
   transform: rotate(-10deg);
 `;
 
-const ProjectsCarrouselContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 5rem 0;
-  height: 100vh;
-  overflow-x: hidden;
-`;
-const ProjectsCarrousel = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 2rem;
-  width: 410%;
-`;
-
-const ProjectCard = styled.div`
-  height: 50vh;
-  width: 92vw;
-`;
-
-const ProjectCardImage = styled.img`
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 30px;
-`;
-
-const ProjectCardHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 1rem;
-`;
-const ProjectCardTitle = styled.h3`
-  font-family: ${ThemeProvider.fonts.tertiary};
-  font-weight: 100;
-  font-size: 1.5rem;
-  color: ${ThemeProvider.colors.core.secondary};
-`;
-const ProjectCardNumber = styled.p`
-  font-family: ${ThemeProvider.fonts.secondary};
-  font-weight: 100;
-  font-size: 1rem;
-  color: ${ThemeProvider.colors.misc.primary};
-`;
-const ProjectCardFooter = styled.p`
-  display: flex;
-  justify-content: end;
-  padding: 0 1rem;
-  font-family: ${ThemeProvider.fonts.secondary};
-  font-weight: 100;
-  font-size: 1rem;
-  color: ${ThemeProvider.colors.core.secondary};
+const HomeContainerBottom = styled.div`
+  padding-top: 5rem;
+  position: relative;
 `;
