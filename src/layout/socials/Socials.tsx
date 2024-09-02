@@ -8,15 +8,15 @@ export const Socials = () => {
     <StyledSocialsContainer>
       <SocialsLinkContainer>
         <SocialsLink>LNK</SocialsLink>
-        <Icon src={ICONS.arrowDown} size={['10px']} />
+        <Icon src={ICONS.arrowDown} size={['10px']} height={['auto']}/>
       </SocialsLinkContainer>
       <SocialsLinkContainer>
         <SocialsLink>GIT</SocialsLink>
-        <Icon src={ICONS.arrowDown} size={['10px']} />
+        <Icon src={ICONS.arrowDown} size={['10px']} height={['auto']} />
       </SocialsLinkContainer>
       <SocialsLinkContainer>
         <SocialsLink>INS</SocialsLink>
-        <Icon src={ICONS.arrowDown} size={['10px']} />
+        <Icon src={ICONS.arrowDown} size={['10px']} height={['auto']} />
       </SocialsLinkContainer>
     </StyledSocialsContainer>
   );

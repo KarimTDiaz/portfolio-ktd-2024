@@ -23,7 +23,7 @@ export const ScrollUi = () => {
   }, {});
   return (
     <StyledScrollUi>
-      <Icon src={ICONS.circle} size={['10px']} ref={iconRef}></Icon>
+      <Icon src={ICONS.circle} size={['10px']} height={['auto']} ref={iconRef}></Icon>
     </StyledScrollUi>
   );
 };
