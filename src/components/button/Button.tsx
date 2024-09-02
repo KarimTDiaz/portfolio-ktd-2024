@@ -5,16 +5,17 @@ type ButtonProps = {
   children: React.ReactNode;
   /*  size?: string[]; */
   action?: () => void;
+  className?:string;
 };
 
-export const Button = ({ type, children, action }: ButtonProps) => {
+export const Button = ({ type, children, action, className }: ButtonProps) => {
   switch (type) {
     case BUTTONS.primary:
       break;
     case BUTTONS.blob:
       return (
         <div>
-          <StyledBlobButton onClick={action} className="blob-element">
+          <StyledBlobButton onClick={action} className={className}>
             {children}
           </StyledBlobButton>
         </div>
@@ -29,8 +30,8 @@ const StyledBlobButton = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
   padding: 5rem;
   text-align: center;
   background-image: url('/assets/icons/blob-stroke.svg');
@@ -39,4 +40,8 @@ const StyledBlobButton = styled.div`
   border-radius: 50%;
   /* border: 1px solid wheat; */
   transition: all 0.5s;
+  @media screen and (min-width: 640px) {
+    width: 250px;
+  height: 250px;
+  }
 `;
