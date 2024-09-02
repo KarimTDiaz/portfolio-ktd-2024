@@ -12,11 +12,14 @@ export const SectionTitle = styled.h2`
 `;
 
 export const GreenText = styled.span`
-  font-size: 20px;
+  font-size: 16px;
   font-family: ${ThemeProvider.fonts.tertiary};
   line-height: 2rem;
   opacity: 1;
   color: ${ThemeProvider.colors.misc.primary};
+  @media screen and (min-width: 640px) {
+    font-size: 20px;
+  }
 `;
 
 export const HomeProjectsButton = styled.div`

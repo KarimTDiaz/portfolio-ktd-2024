@@ -19,8 +19,9 @@ type StyledIconProps = {
 
 const StyledIcon = styled.img<StyledIconProps>`
   width: ${({ size }) => size[0]};
+  height: ${({ height }) => height[0]};
   @media screen and (min-width: 640px) {
     width: ${({ size }) => size[1]};
-    height: auto;
+    height: ${({ height }) => height[1]};
   }
 `;
