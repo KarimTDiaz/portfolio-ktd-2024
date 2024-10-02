@@ -1,2 +1,2 @@
  - [ ] Convert all pixels to rems in fonts , paddings ....
- - [ ] 
+ - [ ] Have to map teh socials , see if have to map any more
